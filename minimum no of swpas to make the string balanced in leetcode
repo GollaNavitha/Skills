@@ -1,0 +1,23 @@
+class Solution {
+    public int minSwaps(String s) {
+        int balance = 0;
+        int maxUnbalance = 0;
+        for (char ch : s.toCharArray()) {
+            if (ch == '[') {
+                balance++;
+            } else {
+                balance--;
+                if (balance < 0) {
+                    maxUnbalance = Math.max(maxUnbalance, -balance);
+                }
+            }
+        } 
+        return (maxUnbalance + 1) / 2;
+    }
+    public static void main(String[] args) {
+        String s = "]]][[[";
+        Solution sol = new Solution();
+        int res = sol.minSwaps(s);
+        System.out.println("Minimum swaps needed: " + res);
+    }
+}
